@@ -3,6 +3,7 @@ import Errorpage from "../Pages/ErrorPage";
 import Root from "../Components/Root";
 import HomePage from "../Pages/HomePage";
 import Myprofile from "../Pages/Myprofile";
+import Slider from "../Components/common/Slider/Slider";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         Component: HomePage,
       },
       { path: "profile", Component: Myprofile },
+      { path: "slide", Component: Slider },
     ],
   },
 ]);

@@ -5,7 +5,7 @@ const Card = ({ toy }) => {
   const { pictureURL, toyName, rating, availableQuantity, price } = toy;
 
   return (
-    <div className="card bg-base-100 shadow-md border border-base-200 hover:shadow-[#625fff97] hover:border-[#625fff43] transition-all delay-150 ease-in-out">
+    <div className="card bg-base-100 shadow-md border border-base-200 hover:shadow-[#625fff97] hover:border-[#625fff43] hover:-translate-y-1.5  transition-all duration-500 ease-in-out">
       <figure className="relative h-64 md:h-52 lg:h-44 overflow-hidden">
         <img
           src={pictureURL}
@@ -29,12 +29,14 @@ const Card = ({ toy }) => {
           </div>
           <div className="text-right">
             <p className="text-xs text-base-content/50">Price</p>
-            <p className="text-xl font-medium text-primary">${price}</p>
+            <p className="text-xl font-medium text-[#615fff]">${price}</p>
           </div>
         </div>
 
         <div className="card-actions mt-1">
-          <button className="btn btn-primary btn-sm w-full">View More</button>
+          <button className="btn bg-[#615fff] text-white btn-md w-full">
+            View More
+          </button>
         </div>
       </div>
     </div>
