@@ -12,7 +12,7 @@ const Navbar = () => {
       </Link>
 
       {/* Desktop Menu */}
-      <div className="hidden sm:flex items-center gap-8">
+      <div className="hidden sticky sm:flex items-center gap-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
 

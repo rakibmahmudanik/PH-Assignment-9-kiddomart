@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "../Components/common/Hero/Hero";
 import AllToy from "../Components/layouts/MainLayouts/AllToy";
-import FeaturedToy from "../Components/layouts/MainLayouts/FeaturedToy";
+import FeaturedToy from "../Components/layouts/MainLayouts/FeaturedToy/FeaturedToy";
 
 const HomePage = () => {
   return (

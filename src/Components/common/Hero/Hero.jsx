@@ -3,10 +3,35 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import useToyData from "../../../Hooks/useToyData";
+import Slider from "../Slider/Slider";
+
+const swiper = {
+  slidesPerView: "auto",
+  spaceBetween: 20,
+  initialSlide: 5,
+  speed: 800,
+  centeredSlides: true,
+  normalizeSlideIndex: false,
+  snapToSlideEdge: true,
+  autoHeight: true,
+  roundLengths: true,
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  autoplay: {
+    delay: 2000,
+    pauseOnMouseEnter: true,
+  },
+};
 
 const Hero = () => {
+  const { toyData } = useToyData();
+  const SlideToy = toyData.slice(0, 3);
   return (
-    <section className="overflow-hidden mb-6 shadow-xl">
+    <section className="overflow-hidden ">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -14,63 +39,12 @@ const Hero = () => {
         autoplay={{ delay: 5000 }}
         className="h-[400px] md:h-[600px]"
       >
-        <SwiperSlide>
-          <div className="relative h-full w-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center px-12 text-white">
-            <div className="max-w-md space-y-4 z-10">
-              <h1 className="text-5xl font-bold">Unleash the Magic of Play!</h1>
-              <p className="text-lg">
-                Discover handpicked toys from local sellers in your
-                neighborhood.
-              </p>
-              <button className="btn btn-warning rounded-full border-none px-8">
-                Shop Now
-              </button>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&q=80&w=800"
-              className="absolute right-0 h-full w-2/3 object-cover opacity-80 mask mask-hexagon"
-              alt="Toys"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-full w-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center px-12 text-white">
-            <div className="max-w-md space-y-4 z-10">
-              <h1 className="text-5xl font-bold">Unleash the Magic of Play!</h1>
-              <p className="text-lg">
-                Discover handpicked toys from local sellers in your
-                neighborhood.
-              </p>
-              <button className="btn btn-warning rounded-full border-none px-8">
-                Shop Now
-              </button>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&q=80&w=800"
-              className="absolute right-0 h-full w-2/3 object-cover opacity-80 mask mask-hexagon"
-              alt="Toys"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-full w-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center px-12 text-white">
-            <div className="max-w-md space-y-4 z-10">
-              <h1 className="text-5xl font-bold">Unleash the Magic of Play!</h1>
-              <p className="text-lg">
-                Discover handpicked toys from local sellers in your
-                neighborhood.
-              </p>
-              <button className="btn btn-warning rounded-full border-none px-8">
-                Shop Now
-              </button>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&q=80&w=800"
-              className="absolute right-0 h-full w-2/3 object-cover opacity-80 mask mask-hexagon"
-              alt="Toys"
-            />
-          </div>
-        </SwiperSlide>
+        {SlideToy.map((toy) => (
+          <SwiperSlide>
+            <Slider toy={toy}></Slider>
+          </SwiperSlide>
+        ))}
+
         {/* Add more SwiperSlides as needed */}
       </Swiper>
     </section>

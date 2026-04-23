@@ -17,7 +17,6 @@ const router = createBrowserRouter([
         Component: HomePage,
       },
       { path: "profile", Component: Myprofile },
-      { path: "slide", Component: Slider },
     ],
   },
 ]);
