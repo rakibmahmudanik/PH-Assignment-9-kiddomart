@@ -2,7 +2,7 @@ import React from "react";
 import Rating from "../../../common/Rating/Rating";
 import { PiFireFill } from "react-icons/pi";
 
-const FeaturedToyCard = ({ toy }) => {
+const PopularToyCard = ({ toy }) => {
   const { pictureURL, toyName, rating, availableQuantity, price } = toy;
 
   return (
@@ -45,4 +45,4 @@ const FeaturedToyCard = ({ toy }) => {
   );
 };
 
-export default FeaturedToyCard;
+export default PopularToyCard;

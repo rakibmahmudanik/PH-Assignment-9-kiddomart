@@ -1,51 +1,25 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import "./navbar.css";
+import Search from "../../common/Search/Search";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const loc = useLocation();
+  console.log(loc);
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
-      <Link className="text-2xl font-semibold" to="/home">
+      <Link className="text-2xl font-semibold" to="/">
         <span className="text-gray-700">Kiddo</span>{" "}
         <span className="text-[#615fff]">Mart</span>
       </Link>
 
+      {loc.pathname === "/alltoys" ? <Search></Search> : ""}
+
       {/* Desktop Menu */}
-      <div className="hidden sticky sm:flex items-center gap-8">
+      <div className="hidden sticky lg:flex items-center gap-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
-
-        <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-          <input
-            className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
-            type="text"
-            placeholder="Search products"
-          />
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.836 10.615 15 14.695"
-              stroke="#7A7B7D"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
-              stroke="#7A7B7D"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
 
         <div className="relative cursor-pointer">
           <svg
@@ -62,12 +36,12 @@ const Navbar = () => {
               stroke-linejoin="round"
             />
           </svg>
-          <button className="absolute -top-2 -right-3 text-xs text-white bg-indigo-500 w-[18px] h-[18px] rounded-full">
+          <button className="absolute -top-2 -right-3 text-xs text-white bg-[#615fff] w-[18px] h-[18px] rounded-full">
             3
           </button>
         </div>
 
-        <button className="cursor-pointer px-8 py-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full">
+        <button className="cursor-pointer px-8 py-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full">
           Login
         </button>
       </div>
@@ -75,7 +49,7 @@ const Navbar = () => {
       <button
         onClick={() => (open ? setOpen(false) : setOpen(true))}
         aria-label="Menu"
-        className="sm:hidden z-10"
+        className="flex lg:hidden z-10 cursor-pointer"
       >
         {/* Menu Icon SVG */}
         <svg
@@ -93,11 +67,11 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`${open ? "flex" : "hidden"} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}
+        className={`${open ? "flex" : "hidden"} absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm lg:hidden z-20  `}
       >
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
-        <button className="cursor-pointer px-6 py-2 mt-2 bg-indigo-500 hover:bg-indigo-600 transition text-white rounded-full text-sm">
+        <button className="cursor-pointer px-6 py-2 mt-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full text-sm">
           Login
         </button>
       </div>

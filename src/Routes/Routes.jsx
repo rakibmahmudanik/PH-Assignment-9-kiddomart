@@ -4,6 +4,7 @@ import Root from "../Components/Root";
 import HomePage from "../Pages/HomePage";
 import Myprofile from "../Pages/Myprofile";
 import Slider from "../Components/common/Slider/Slider";
+import AllToy from "../Components/layouts/MainLayouts/AllToy";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         Component: HomePage,
       },
       { path: "profile", Component: Myprofile },
+      { path: "alltoys", Component: AllToy },
     ],
   },
 ]);

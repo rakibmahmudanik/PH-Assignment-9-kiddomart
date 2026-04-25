@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useToyData from "../../../Hooks/useToyData";
 import Slider from "../Slider/Slider";
+import SkeletonSlider from "../Loading/SkeletonSlider";
 
 const swiper = {
   slidesPerView: "auto",
@@ -28,7 +29,7 @@ const swiper = {
 };
 
 const Hero = () => {
-  const { toyData } = useToyData();
+  const { toyData, isloading } = useToyData();
   const SlideToy = toyData.slice(0, 3);
   return (
     <section className="overflow-hidden ">
@@ -39,11 +40,17 @@ const Hero = () => {
         autoplay={{ delay: 5000 }}
         className="h-[400px] md:h-[600px]"
       >
-        {SlideToy.map((toy) => (
-          <SwiperSlide>
-            <Slider toy={toy}></Slider>
-          </SwiperSlide>
-        ))}
+        {isloading
+          ? [...Array(3)].map((_, index) => (
+              <SwiperSlide>
+                <SkeletonSlider key={index}></SkeletonSlider>
+              </SwiperSlide>
+            ))
+          : SlideToy.map((toy) => (
+              <SwiperSlide>
+                <Slider toy={toy}></Slider>
+              </SwiperSlide>
+            ))}
 
         {/* Add more SwiperSlides as needed */}
       </Swiper>

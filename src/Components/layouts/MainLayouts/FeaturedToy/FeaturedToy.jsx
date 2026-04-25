@@ -1,73 +1,30 @@
 import React from "react";
 import useToyData from "../../../../Hooks/useToyData";
 import Skeleton from "../../../common/Loading/Skeleton";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import FeaturedToyCard from "./FeaturedToyCard";
-const swiper = {
-  slidesPerView: "auto",
-  spaceBetween: 20,
-  initialSlide: 5,
-  speed: 800,
-  centeredSlides: true,
-  normalizeSlideIndex: false,
-  snapToSlideEdge: true,
-  autoHeight: true,
-  roundLengths: true,
-  loop: true,
-  slidesOffsetBefore: 50,
-  slidesOffsetAfter: 50,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  autoplay: {
-    delay: 2000,
-    pauseOnMouseEnter: true,
-  },
-};
+import Card from "../../../common/card/Card";
+import { Link } from "react-router";
 
 const FeaturedToy = () => {
   const { toyData, isloading } = useToyData();
-  const featuredToyData = toyData.filter((p) => p.rating >= 4.8);
+  const trimd = toyData.slice(0, 8);
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
-      <h1 className=" mb-10 text-3xl font-bold">
-        Popular Toys
-        <hr className="w-16 border-2 mt-5 border-[#615fff] rounded-2xl"></hr>
-      </h1>
-      <div className="shadow-2xl pb-1 pr-1 rounded">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation
-          slidesPerView={5}
-          spaceBetween={20}
-          initialSlide={5}
-          speed={600}
-          // centeredSlides={true}
-          snapToSlideEdge={true}
-          autoHeight={true}
-          roundLengths={true}
-          loop={true}
-          autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
-          className=""
+      <h1 className="mt-10 mb-2 text-3xl font-bold">Featured Toys</h1>
+      <hr className="w-16 border-2 mb-10 border-[#615fff] rounded-2xl"></hr>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 ">
+        {isloading
+          ? [...Array(8)].map((_, index) => <Skeleton key={index}></Skeleton>)
+          : trimd.map((toy) => <Card key={toy.toyId} toy={toy}></Card>)}
+      </div>
+
+      <div className="card-actions my-10 ">
+        <Link
+          to="/alltoys"
+          className="btn bg-[#615fff] text-white btn-md mx-auto "
         >
-          {isloading
-            ? [...Array(20)].map((_, index) => (
-                <SwiperSlide>
-                  <Skeleton key={index}></Skeleton>
-                </SwiperSlide>
-              ))
-            : featuredToyData.map((toy) => (
-                <SwiperSlide>
-                  <FeaturedToyCard key={toy.toyId} toy={toy}></FeaturedToyCard>
-                </SwiperSlide>
-              ))}
-        </Swiper>
+          Show All
+        </Link>
       </div>
     </div>
   );

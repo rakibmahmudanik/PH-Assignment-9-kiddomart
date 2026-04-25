@@ -12,7 +12,7 @@ const Card = ({ toy }) => {
           alt={toyName}
           className="w-full h-full object-cover"
         />
-        <span className="badge badge-success absolute top-2 right-2 text-xs">
+        <span className="badge bg-green-300 border  border-green-500 font-semibold absolute top-2 right-2 text-xs">
           {availableQuantity > 0 ? "In Stock" : "Out Of Stock"}
         </span>
       </figure>
