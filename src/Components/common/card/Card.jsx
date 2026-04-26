@@ -28,7 +28,7 @@ const Card = ({ toy }) => {
             <p className="text-sm font-medium">{availableQuantity} units</p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-base-content/50">Price</p>
+            {/* <p className="text-xs text-base-content/50">Price</p> */}
             <p className="text-xl font-medium text-[#615fff]">${price}</p>
           </div>
         </div>
