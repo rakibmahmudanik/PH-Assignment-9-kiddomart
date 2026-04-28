@@ -21,7 +21,7 @@ const OurPartnerMarquee = () => {
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
-      <h1 className="mt-5 mb-2 text-3xl font-bold text-center">
+      <h1 className="mt-5 mb-2 text-2xl md:text-4xl font-bold text-center">
         Our Sales Partners
         <hr className="w-16 border-2 mt-4 mb-5 border-[#615fff] rounded-2xl mx-auto"></hr>
       </h1>

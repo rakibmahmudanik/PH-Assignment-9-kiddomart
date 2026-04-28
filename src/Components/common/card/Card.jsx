@@ -1,8 +1,9 @@
 import React from "react";
 import Rating from "../Rating/Rating";
+import { Link } from "react-router";
 
 const Card = ({ toy }) => {
-  const { pictureURL, toyName, rating, availableQuantity, price } = toy;
+  const { pictureURL, toyName, rating, availableQuantity, price, toyId } = toy;
 
   return (
     <div className="card bg-base-100 shadow-md border border-base-200 hover:shadow-[#625fff97] hover:border-[#625fff43] hover:-translate-y-1.5  transition-all duration-500 ease-in-out">
@@ -29,14 +30,19 @@ const Card = ({ toy }) => {
           </div>
           <div className="text-right">
             {/* <p className="text-xs text-base-content/50">Price</p> */}
-            <p className="text-xl font-medium text-[#615fff]">${price}</p>
+            <p className="text-xl font-medium text-[#615fff]">
+              ${price.toFixed(2)}
+            </p>
           </div>
         </div>
 
         <div className="card-actions mt-1">
-          <button className="btn bg-[#615fff] text-white btn-md w-full">
+          <Link
+            to={`/details/${toyId}`}
+            className="btn bg-[#615fff] text-white btn-md w-full"
+          >
             View More
-          </button>
+          </Link>
         </div>
       </div>
     </div>

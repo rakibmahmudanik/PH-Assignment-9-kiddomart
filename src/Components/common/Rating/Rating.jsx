@@ -12,7 +12,6 @@ const Rating = ({ rating }) => {
               ? `${(rating % 1) * 100}%`
               : "0%";
 
-        console.log("Rating -", rating, "Ceil", Math.ceil(rating));
         const gradId = `grad-${uid}-${i}`;
 
         return (

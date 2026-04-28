@@ -7,28 +7,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import PopularToyCard from "./PopularToyCard";
-const swiper = {
-  slidesPerView: "auto",
-  spaceBetween: 20,
-  initialSlide: 5,
-  speed: 800,
-  centeredSlides: true,
-  normalizeSlideIndex: false,
-  snapToSlideEdge: true,
-  autoHeight: true,
-  roundLengths: true,
-  loop: true,
-  slidesOffsetBefore: 50,
-  slidesOffsetAfter: 50,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  autoplay: {
-    delay: 2000,
-    pauseOnMouseEnter: true,
-  },
-};
 
 const PopularToy = () => {
   const { toyData, isloading } = useToyData();
@@ -40,11 +18,11 @@ const PopularToy = () => {
         Popular Toys
         <hr className="w-16 border-2 mt-5 border-[#615fff] rounded-2xl"></hr>
       </h1>
-      <div className="shadow-2xl/10 pb-2 pr-2 rounded-xl">
+      <div className="shadow-2xl/10 pb-2 px-2 rounded-xl">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
-          slidesPerView={2}
+          slidesPerView={1}
           spaceBetween={20}
           initialSlide={5}
           speed={600}

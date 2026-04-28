@@ -6,31 +6,14 @@ import "swiper/css/pagination";
 import useToyData from "../../../Hooks/useToyData";
 import Slider from "../Slider/Slider";
 import SkeletonSlider from "../Loading/SkeletonSlider";
-
-const swiper = {
-  slidesPerView: "auto",
-  spaceBetween: 20,
-  initialSlide: 5,
-  speed: 800,
-  centeredSlides: true,
-  normalizeSlideIndex: false,
-  snapToSlideEdge: true,
-  autoHeight: true,
-  roundLengths: true,
-  loop: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  autoplay: {
-    delay: 2000,
-    pauseOnMouseEnter: true,
-  },
-};
+const firstIndex = Math.floor(Math.random() * 15);
+const lastIndex = Math.floor(Math.random() * 30) + 15;
 
 const Hero = () => {
   const { toyData, isloading } = useToyData();
-  const SlideToy = toyData.slice(0, 3);
+  const randomRange = toyData.slice(firstIndex, lastIndex);
+  const SlideToy = randomRange.slice(0, 3);
+  console.log(SlideToy);
   return (
     <section className="overflow-hidden ">
       <Swiper
@@ -38,7 +21,7 @@ const Hero = () => {
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000 }}
-        className="h-[400px] md:h-[600px]"
+        className="h-100 md:h-150"
       >
         {isloading
           ? [...Array(3)].map((_, index) => (

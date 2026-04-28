@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "customerName": "Sarah Jenkins",
+    "customerRole": "Mother of two",
+    "rating": 5,
+    "testimonial": "Finding unique, high-quality toys that aren't mass-produced is so hard these days. Kiddo Mart made it easy to find a local artisan who makes the most beautiful wooden blocks. My kids haven't stopped playing with them!",
+    "customerImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150",
+    "location": "Brooklyn, NY"
+  },
+  {
+    "id": 2,
+    "customerName": "David Chen",
+    "customerRole": "Primary School Teacher",
+    "rating": 4.8,
+    "testimonial": "I use Kiddo Mart to source educational materials for my classroom. The detailed descriptions help me understand exactly what developmental skills each toy targets. It’s a game-changer for educators!",
+    "customerImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150",
+    "location": "San Francisco, CA"
+  },
+  {
+    "id": 3,
+    "customerName": "Elena Rodriguez",
+    "customerRole": "New Mom",
+    "rating": 4.5,
+    "testimonial": "The 'Vibrant' theme of the site is so refreshing. It actually makes toy shopping fun rather than a chore. I love seeing the faces of the local sellers behind the products.",
+    "customerImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150",
+    "location": "Austin, TX"
+  },
+  {
+    "id": 4,
+    "customerName": "Marcus Thorne",
+    "customerRole": "Grandfather",
+    "rating": 5,
+    "testimonial": "I bought a classic train set for my grandson's birthday. The quality is heirloom-level. It’s wonderful to support local craftsmen instead of big-box stores. Highly recommended!",
+    "customerImage": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150",
+    "location": "London, UK"
+  },
+  {
+    "id": 5,
+    "customerName": "Jessica Wu",
+    "customerRole": "Early Childhood Specialist",
+    "rating": 5,
+    "testimonial": "The transparency about materials and safety is what won me over. As a specialist, I’m very picky about what toys I recommend, and Kiddo Mart passes every test with flying colors.",
+    "customerImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150",
+    "location": "Toronto, ON"
+  },
+  {
+    "id": 6,
+    "customerName": "Thomas Miller",
+    "customerRole": "Stay-at-home Dad",
+    "rating": 5,
+    "testimonial": "Fast delivery and the packaging was adorable! My daughter felt like she was receiving a special gift from a friend. We’re officially Kiddo Mart fans for life.",
+    "customerImage": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150",
+    "location": "Chicago, IL"
+  },
+  {
+    "id": 7,
+    "customerName": "Samantha Reed",
+    "customerRole": "Toy Hobbyist",
+    "rating": 4.7,
+    "testimonial": "I love the 'vibrant' aesthetic of the marketplace. The search filters for local sellers worked perfectly, and I found a rare chemistry set that I couldn't find anywhere else.",
+    "customerImage": "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=150",
+    "location": "Seattle, WA"
+  },
+  {
+    "id": 8,
+    "customerName": "Liam O'Connor",
+    "customerRole": "Software Engineer & Parent",
+    "rating": 5,
+    "testimonial": "Technically, the site is a breeze to use. The loading states are smooth, and the mobile experience is top-notch. Finding a birthday gift for my son took less than five minutes.",
+    "customerImage": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150",
+    "location": "Dublin, IE"
+  },
+  {
+    "id": 9,
+    "customerName": "Aisha Khan",
+    "customerRole": "Eco-conscious Parent",
+    "rating": 4,
+    "testimonial": "I appreciate that I can filter for eco-friendly and sustainably made toys. Kiddo Mart makes it possible to shop with my values without sacrificing the 'fun' factor for my kids.",
+    "customerImage": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=150",
+    "location": "Birmingham, UK"
+  },
+  {
+    "id": 10,
+    "customerName": "Oliver Schmidt",
+    "customerRole": "Designer",
+    "rating": 5,
+    "testimonial": "As a designer, I’m impressed by the UI. It’s bubbly and playful without being cluttered. The testimonial section is a great touch to build community trust.",
+    "customerImage": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150",
+    "location": "Berlin, DE"
+  }
+]

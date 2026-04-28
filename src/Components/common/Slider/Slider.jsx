@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import { Link } from "react-router";
 
 const Slider = ({ toy }) => {
-  console.log(toy.pictureURL);
   return (
     <div
       style={{
@@ -34,7 +33,7 @@ const Slider = ({ toy }) => {
       </div>
       <img
         src={toy.pictureURL}
-        className="absolute right-55 top-4 w-1/4  object-cover  mask mask-hexagon md:right-70 md:top-7 lg:w-1/3 lg:h-full lg:top-0   lg:right-30 transition-all"
+        className="absolute right-40 top-4 w-1/4  object-cover  mask mask-hexagon md:right-70 md:top-7 lg:w-1/3 lg:h-full lg:top-0   lg:right-30 transition-all"
         alt="Toys"
       />
     </div>
