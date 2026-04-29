@@ -21,12 +21,24 @@ const OurPartnerMarquee = () => {
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
-      <h1 className="mt-5 mb-2 text-2xl md:text-4xl font-bold text-center">
+      <h1
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="mt-5 mb-2 text-2xl md:text-4xl font-bold text-center"
+      >
         Our Sales Partners
-        <hr className="w-16 border-2 mt-4 mb-5 border-[#615fff] rounded-2xl mx-auto"></hr>
+        <hr
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="w-16 border-2 mt-4 mb-5 border-[#615fff] rounded-2xl mx-auto"
+        ></hr>
       </h1>
       <Marquee speed={50} gradient={true}>
-        <div className="flex w-full gap-12 items-center justify-evenly pl-12">
+        <div
+          data-aos="fade-zoom-in"
+          data-aos-delay="400"
+          className="flex w-full gap-12 items-center justify-evenly pl-12"
+        >
           {ourPartner.map((logo, index) => (
             <img
               key={index}

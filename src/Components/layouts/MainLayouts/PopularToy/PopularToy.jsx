@@ -13,12 +13,16 @@ const PopularToy = () => {
   const featuredToyData = toyData.filter((p) => p.rating >= 4.8);
 
   return (
-    <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
+    <div data-aos="fade-up" className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
       <h1 className=" my-10 text-3xl font-bold">
         Popular Toys
         <hr className="w-16 border-2 mt-5 border-[#615fff] rounded-2xl"></hr>
       </h1>
-      <div className="shadow-2xl/10 pb-2 px-2 rounded-xl">
+      <div
+        data-aos="fade-left"
+        data-aos-delay="100"
+        className="shadow-2xl/10 pb-2 px-2 rounded-xl"
+      >
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation

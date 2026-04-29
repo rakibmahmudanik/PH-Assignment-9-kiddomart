@@ -5,12 +5,16 @@ import { Link } from "react-router";
 const LoginPage = () => {
   return (
     <main
+      data-aos="fade-in"
       className={`relative min-h-screen w-full flex items-center justify-center bg-[url("https://i.ibb.co.com/nqjk80fD/login-Image.webp")] bg-cover bg-center bg-blend-overlay`}
     >
       <div className=" absolute inset-0 bg-black/80" />
 
       <div className="py-4 px-4 md:px-8 z-10">
-        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0">
+        <div
+          data-aos="slide-right"
+          className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0"
+        >
           <div className="mb-8">
             <h1 className="text-slate-900 text-3xl font-bold mb-4">Sign in</h1>
             <p className="text-slate-600 text-base leading-relaxed">
@@ -117,7 +121,7 @@ const LoginPage = () => {
                 to={"/register"}
                 className="text-[#615fff] hover:underline ml-1 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7f7dff] rounded"
               >
-                Sign up
+                Register
               </Link>
             </div>
           </form>

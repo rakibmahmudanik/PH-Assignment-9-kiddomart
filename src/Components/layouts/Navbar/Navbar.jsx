@@ -8,10 +8,18 @@ const Navbar = () => {
   const loc = useLocation();
   console.log(loc);
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
-      <Link className="text-2xl font-semibold" to="/">
-        <span className="text-gray-700">Kiddo</span>{" "}
-        <span className="text-[#615fff]">Mart</span>
+    <nav
+      data-aos="fade-down"
+      className="overflow-hidden "
+      className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all"
+    >
+      <Link to={"/"} className="flex items-center gap-2">
+        <div className="bg-[#615fff] p-2 rounded-lg rotate-3">
+          <span className="text-2xl font-black text-white">KM</span>
+        </div>
+        <h2 className="text-3xl font-black tracking-tight uppercase text-gray-600">
+          Kiddo<span className="text-[#615fff]">Mart</span>
+        </h2>
       </Link>
 
       {loc.pathname === "/alltoys" ? <Search></Search> : ""}

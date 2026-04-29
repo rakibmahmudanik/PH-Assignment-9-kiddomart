@@ -6,3 +6,9 @@
 * {
   font-family: "Quicksand", sans-serif;
 }
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}

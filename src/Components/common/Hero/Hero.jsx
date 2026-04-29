@@ -15,7 +15,7 @@ const Hero = () => {
   const SlideToy = randomRange.slice(0, 3);
   console.log(SlideToy);
   return (
-    <section className="overflow-hidden ">
+    <section>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation

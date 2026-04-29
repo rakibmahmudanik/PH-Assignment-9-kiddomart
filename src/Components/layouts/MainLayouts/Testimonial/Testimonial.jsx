@@ -22,31 +22,51 @@ const Testimonial = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="my-10">
+    <div data-aos="fade-up" data-aos-delay="100" className="my-10">
       <div className="text-center mb-12 px-6">
-        <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-4">
+        <h1
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="text-2xl md:text-4xl font-extrabold tracking-tight mb-4"
+        >
           Lovely Testimonial From{" "}
           <span className="text-primary italic">Happy Customer</span>
         </h1>
 
-        <p className="text-base md:text-md text-base-content/60 font-medium max-w-2xl mx-auto">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="text-base md:text-md text-base-content/60 font-medium max-w-2xl mx-auto"
+        >
           Join 1,000+ parents who trust us for their little ones' everyday joy
           and comfort.
         </p>
 
-        <hr className="w-20 border-2 mt-5 border-[#615fff] rounded-2xl mx-auto"></hr>
+        <hr
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="w-20 border-2 mt-5 border-[#615fff] rounded-2xl mx-auto"
+        ></hr>
       </div>
 
       <div className="flex flex-col gap-5">
         <Marquee speed={50} direction="right" gradient={true}>
-          <div className="flex gap-5 flex-wrap pl-5">
+          <div
+            data-aos="fade-right"
+            data-aos-delay="100"
+            className="flex gap-5 flex-wrap pl-5"
+          >
             {firstRow.map((data) => (
               <TestimonialCard key={data.id} data={data}></TestimonialCard>
             ))}
           </div>
         </Marquee>
         <Marquee speed={50} gradient={true}>
-          <div className="flex gap-5 flex-wrap pl-5">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="100"
+            className="flex gap-5 flex-wrap pl-5"
+          >
             {secondRow.map((data) => (
               <TestimonialCard key={data.id} data={data}></TestimonialCard>
             ))}

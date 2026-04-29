@@ -46,37 +46,58 @@ const InfoBar = () => {
 
   return (
     <div>
-      <div className="text-center  my-10 px-6">
-        <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight mb-4">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="text-center  my-10 px-6"
+      >
+        <h1
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="text-2xl md:text-4xl font-extrabold tracking-tight mb-4"
+        >
           Easy Shopping,{" "}
           <span className="text-primary italic">Happy Little Moments!</span>
         </h1>
 
-        <p className="text-base md:text-md text-base-content/60 font-medium max-w-2xl mx-auto">
+        <p
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="text-base md:text-md text-base-content/60 font-medium max-w-2xl mx-auto"
+        >
           Everything you need to make parenting easier and playtime better—with
           fast delivery and easy returns.
         </p>
 
-        <hr className="w-20 border-2 mt-5 border-[#615fff] rounded-2xl mx-auto"></hr>
+        <hr
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="w-20 border-2 mt-5 border-[#615fff] rounded-2xl mx-auto"
+        ></hr>
       </div>
       <div className="w-full bg-base-200 py-10 px-6 md:px-16 lg:px-24 xl:px-32">
         {/* Grid Container */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {infoItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => openModal(item)}
-              className="group flex flex-col items-center text-center p-6 bg-base-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-base-300"
-            >
-              <div className="mb-4 p-3 bg-base-200 rounded-full group-hover:bg-primary/10 transition-colors">
-                {item.icon}
+        <div
+          data-aos="fade-up"
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {infoItems.map((item, index) => (
+            <div data-aos="fade-up" data-aos-delay={`${200 * index}`}>
+              <div
+                key={item.id}
+                onClick={() => openModal(item)}
+                className="group flex flex-col items-center text-center p-6 bg-base-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-base-300"
+              >
+                <div className="mb-4 p-3 bg-base-200 rounded-full group-hover:bg-primary/10 transition-colors">
+                  {item.icon}
+                </div>
+                <h3 className="font-bold text-lg text-base-content">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-base-content/60 mt-1">
+                  {item.subtitle}
+                </p>
               </div>
-              <h3 className="font-bold text-lg text-base-content">
-                {item.title}
-              </h3>
-              <p className="text-sm text-base-content/60 mt-1">
-                {item.subtitle}
-              </p>
             </div>
           ))}
         </div>

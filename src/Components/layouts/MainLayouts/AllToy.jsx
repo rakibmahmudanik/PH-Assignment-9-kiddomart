@@ -13,7 +13,11 @@ const AllToy = () => {
   );
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
-      <h1 className="mt-5 mb-2 text-3xl font-bold">
+      <h1
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="mt-5 mb-2 text-3xl font-bold"
+      >
         All Toys{" "}
         <span className="text-sm text-gray-400">({filteredToy.length})</span>
         <hr className="w-16 border-2 mt-4 mb-10 border-[#615fff] rounded-2xl"></hr>

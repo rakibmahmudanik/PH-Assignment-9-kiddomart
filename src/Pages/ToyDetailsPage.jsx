@@ -11,13 +11,14 @@ import {
   Mail,
   User,
 } from "lucide-react";
+import Spinner from "../Components/common/Loading/Spinner";
 
 const ToyDetailsPage = () => {
   const { toyData, isloading } = useToyData();
   const [quantity, setQuantity] = useState(1);
   const idParams = useParams().id;
 
-  if (isloading) return <p>Loading...</p>;
+  if (isloading) return <Spinner></Spinner>;
 
   const toyDetails = toyData.filter(
     (toy) => toy.toyId.toString() === idParams,
@@ -25,27 +26,42 @@ const ToyDetailsPage = () => {
   console.log(toyDetails);
 
   return (
-    <div className="min-h-screen bg-base-100 py-8 px-6 md:px-16 lg:px-24 xl:px-32">
+    <div
+      data-aos="fade-zoom-in"
+      data-aos-delay="100"
+      data-aos-anchor-placement="top-center"
+      className="min-h-screen bg-base-100 py-8 px-6 md:px-16 lg:px-24 xl:px-32"
+    >
       {/* Breadcrumbs */}
       <div className="text-sm breadcrumbs mb-6 text-base-content/60">
         <ul>
-          <li>
+          <li data-aos="fade-right" data-aos-delay="100">
             <Link to={"/"}>Home</Link>
           </li>
-          <li>
+          <li data-aos="fade-right" data-aos-delay="300">
             <Link to="/alltoys">Shop</Link>
           </li>
-          <li>
+          <li data-aos="fade-right" data-aos-delay="500">
             <Link>{toyDetails.subCategory}</Link>
           </li>
-          <li className="text-[#615fff] font-semibold">{toyDetails.toyName}</li>
+          <li
+            data-aos="fade-right"
+            data-aos-delay="700"
+            className="text-[#615fff] font-semibold"
+          >
+            {toyDetails.toyName}
+          </li>
         </ul>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         {/* Left: toyDetails Image */}
         <div className="space-y-4">
-          <div className="bg-base-200 rounded-3xl overflow-hidden shadow-inner group">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="bg-base-200 rounded-3xl overflow-hidden shadow-inner group"
+          >
             <img
               src={toyDetails.pictureURL}
               alt={toyDetails.toyName}
@@ -68,24 +84,42 @@ const ToyDetailsPage = () => {
         {/* Right: toyDetails Info */}
         <div className="flex flex-col gap-6">
           <div>
-            <div className="badge  badge-outline opacity-40 mb-2 font-bold uppercase tracking-wider">
+            <div
+              data-aos="fade-left"
+              data-aos-delay="100"
+              className="badge  badge-outline opacity-40 mb-2 font-bold uppercase tracking-wider"
+            >
               {toyDetails.subCategory}
             </div>
-            <h1 className="text-3xl md:text-5xl font-black leading-tight">
+            <h1
+              data-aos="fade-right"
+              data-aos-delay="200"
+              className="text-3xl md:text-5xl font-black leading-tight"
+            >
               {toyDetails.toyName}
             </h1>
 
             {/* Rating & Stock */}
             <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center text-orange-400 font-bold gap-1">
+              <div
+                data-aos="fade-right"
+                data-aos-delay="300"
+                className="flex items-center text-orange-400 font-bold gap-1"
+              >
                 <Star className="fill-current w-5 h-5" />
                 <span>{toyDetails.rating}</span>
                 <span className="text-base-content/40 font-medium">
-                  ({toyDetails.totalReviews})
+                  ({toyDetails.totalReviews} Reviews)
                 </span>
               </div>
-              <div className="divider divider-horizontal"></div>
+              <div
+                data-aos="fade-right"
+                data-aos-delay="350"
+                className="divider divider-horizontal"
+              ></div>
               <span
+                data-aos="fade-right"
+                data-aos-delay="400"
                 className={`font-bold ${toyDetails.availableQuantity > 0 ? "text-success" : "text-error"}`}
               >
                 {toyDetails.availableQuantity > 0
@@ -95,12 +129,20 @@ const ToyDetailsPage = () => {
             </div>
           </div>
 
-          <p className="text-2xl md:text-4xl font-bold text-[#615fff]">
+          <p
+            data-aos="fade-up"
+            data-aos-delay="500"
+            className="text-2xl md:text-4xl font-bold text-[#615fff]"
+          >
             ${toyDetails.price.toFixed(2) * quantity}
           </p>
 
           {/* Seller Info Card */}
-          <div className="bg-base-200 p-4 rounded-2xl flex flex-wrap gap-4 items-center border border-base-300">
+          <div
+            data-aos="fade-left"
+            data-aos-delay="600"
+            className="bg-base-200 p-4 rounded-2xl flex flex-wrap gap-4 items-center border border-base-300"
+          >
             <div className="avatar placeholder">
               <div className="bg-[#615fff] flex justify-center items-center text-secondary-content rounded-full w-12">
                 <User />
@@ -119,7 +161,11 @@ const ToyDetailsPage = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex flex-wrap gap-4 mt-4">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="600"
+            className="flex flex-wrap gap-4 mt-4"
+          >
             <div className="join border border-base-300 rounded-xl">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -151,7 +197,11 @@ const ToyDetailsPage = () => {
           </div>
 
           {/* Trust Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-base-300">
+          <div
+            data-aos="fade-up"
+            data-aos-delay="700"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-base-300"
+          >
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-success w-6 h-6" />
               <span className="text-xs font-bold opacity-70">
@@ -174,9 +224,9 @@ const ToyDetailsPage = () => {
         </div>
       </div>
 
-      <div className="my-10 space-y-3">
+      <div data-aos="fade-up" className="my-10 space-y-3">
         <h2 className="font-bold text-xl">Description</h2>
-        <p className="text-base-content/70 leading-relaxed text-lg">
+        <p className="text-base-content/70 leading-relaxed text-lg text-justify">
           {toyDetails.description}
         </p>
       </div>
