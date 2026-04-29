@@ -118,7 +118,7 @@ const LoginPage = () => {
             <div className="text-slate-900 text-sm text-center">
               Don't have an account?{" "}
               <Link
-                to={"/register"}
+                to={"/auth/register"}
                 className="text-[#615fff] hover:underline ml-1 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7f7dff] rounded"
               >
                 Register

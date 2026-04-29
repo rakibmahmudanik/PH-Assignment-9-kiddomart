@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../common/card/Card";
 import useToyData from "../../../Hooks/useToyData";
 import Skeleton from "../../common/Loading/Skeleton";
@@ -7,19 +7,27 @@ import { useSearchParams } from "react-router";
 const AllToy = () => {
   const { toyData, isloading } = useToyData();
   const [searchParams] = useSearchParams();
+  const [category, setCategory] = useState([]);
   const searchTerm = searchParams.get("search");
   const filteredToy = toyData.filter((toy) =>
     toy.toyName.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  useEffect(() => {
+    toyData.map((toy) => console.log(toy.subCategory));
+  }, [toyData]);
+
+  console.log(category);
+
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
       <h1
-        data-aos="fade-up"
+        data-aos="fade-down"
         data-aos-delay="100"
         className="mt-5 mb-2 text-3xl font-bold"
       >
         All Toys{" "}
-        <span className="text-sm text-gray-400">({filteredToy.length})</span>
+        {/* <span className="text-sm text-gray-400">({filteredToy.length})</span> */}
         <hr className="w-16 border-2 mt-4 mb-10 border-[#615fff] rounded-2xl"></hr>
       </h1>
 

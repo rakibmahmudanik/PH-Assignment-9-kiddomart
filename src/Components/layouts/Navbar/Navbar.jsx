@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import "./navbar.css";
 import Search from "../../common/Search/Search";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
-  console.log(loc);
+  const { user } = use(AuthContext);
   return (
     <nav
       data-aos="fade-down"
       className="overflow-hidden "
-      className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all"
+      className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all z-40"
     >
       <Link to={"/"} className="flex items-center gap-2">
         <div className="bg-[#615fff] p-2 rounded-lg rotate-3">
@@ -49,12 +50,16 @@ const Navbar = () => {
           </button>
         </div>
 
-        <Link
-          to={"/login"}
-          className="cursor-pointer px-8 py-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full"
-        >
-          Login
-        </Link>
+        {user ? (
+          <p>{user.name}</p>
+        ) : (
+          <Link
+            to={"/auth/login"}
+            className="cursor-pointer px-8 py-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full"
+          >
+            Login
+          </Link>
+        )}
       </div>
 
       <button
@@ -78,13 +83,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`${open ? "flex" : "hidden"} absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm lg:hidden z-20  `}
+        className={`${open ? "flex" : "hidden"} absolute top-15 left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm lg:hidden transition-all `}
       >
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
-        <button className="cursor-pointer px-6 py-2 mt-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full text-sm">
-          Login
-        </button>
+        {user ? (
+          <p>{user.name}</p>
+        ) : (
+          <Link
+            to={"/auth/login"}
+            className="cursor-pointer px-6 py-2 mt-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full text-sm"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );

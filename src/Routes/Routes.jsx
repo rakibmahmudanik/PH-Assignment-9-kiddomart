@@ -8,6 +8,8 @@ import AllToy from "../Components/layouts/MainLayouts/AllToy";
 import ToyDetailsPage from "../Pages/ToyDetailsPage";
 import LoginPage from "../Pages/LoginPage";
 import RegisterPage from "../Pages/RegisterPage";
+import { Component } from "react";
+import AuthLayout from "../Components/layouts/Auth/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,15 @@ const router = createBrowserRouter([
       { path: "profile", Component: Myprofile },
       { path: "alltoys", Component: AllToy },
       { path: "details/:id", Component: ToyDetailsPage },
-      { path: "login", Component: LoginPage },
-      { path: "register", Component: RegisterPage },
+    ],
+  },
+
+  {
+    path: "/auth",
+    Component: AuthLayout,
+    children: [
+      { path: "/auth/login", Component: LoginPage },
+      { path: "/auth/register", Component: RegisterPage },
     ],
   },
 ]);

@@ -15,9 +15,9 @@ import { Link } from "react-router";
 const Footer = () => {
   return (
     <footer className="bg-black text-gray-400 px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8 border-t border-gray-900">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:justify-items-end-safe md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Brand & Newsletter Section */}
-        <div className="space-y-6">
+        <div className="space-y-6 ">
           <Link to={"/"} className="flex items-center gap-2">
             <div className="bg-[#615fff] p-2 rounded-lg rotate-3">
               <span className="text-2xl font-black text-white">KM</span>
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="md:ml-10">
+        <div className="">
           <h4 className="text-white font-bold text-lg mb-6 uppercase tracking-widest border-l-4 border-primary pl-3">
             Explore
           </h4>
@@ -127,14 +127,23 @@ const Footer = () => {
           {/* Secure Payments */}
           <div className="pt-4">
             <div className="flex flex-wrap gap-2 opacity-80">
-              <div className="bg-transparent px-3 py-1 rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter">
-                VISA
+              <div className=" flex justify-center items-center p-3 py-1 bg-white rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter  hover:bg-gray-300 cursor-pointer transition-all duration-300">
+                <img
+                  className="w-10"
+                  src="https://upload.wikimedia.org/wikipedia/commons/9/98/Visa_Inc._logo_%282005%E2%80%932014%29.svg"
+                />
               </div>
-              <div className="bg-transparent px-3 py-1 rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter">
-                BKASH
+              <div className="flex justify-center items-center bg-white px-3 py-1 rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter  hover:bg-gray-300 cursor-pointer transition-all duration-300">
+                <img
+                  className="w-10"
+                  src="https://freepnglogo.com/images/all_img/1701541755bkash-logo-png.png"
+                />
               </div>
-              <div className="bg-transparent px-3 py-1 rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter">
-                NAGAD
+              <div className="flex justify-center items-center bg-white px-3 py-1 rounded border border-gray-800 text-[10px] font-bold text-white tracking-tighter hover:bg-gray-300 cursor-pointer transition-all duration-300">
+                <img
+                  className="w-10"
+                  src="https://vectorseek.com/wp-content/uploads/2022/02/vectorseek.com-Nagad-Logo-Vector.png"
+                />
               </div>
             </div>
           </div>
