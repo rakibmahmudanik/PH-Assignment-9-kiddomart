@@ -10,6 +10,7 @@ import LoginPage from "../Pages/LoginPage";
 import RegisterPage from "../Pages/RegisterPage";
 import { Component } from "react";
 import AuthLayout from "../Components/layouts/Auth/AuthLayout";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,14 @@ const router = createBrowserRouter([
       },
       { path: "profile", Component: Myprofile },
       { path: "alltoys", Component: AllToy },
-      { path: "details/:id", Component: ToyDetailsPage },
+      {
+        path: "details/:id",
+        element: (
+          <PrivateRoute>
+            <ToyDetailsPage></ToyDetailsPage>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 

@@ -1,8 +1,27 @@
-import React from "react";
+import React, { use } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const LoginPage = () => {
+  const { userSignIn } = use(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const pass = form.password.value;
+
+    userSignIn(email, pass)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorCode, errorMessage);
+      });
+  };
   return (
     <main
       data-aos="fade-in"
@@ -22,7 +41,7 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -96,7 +115,7 @@ const LoginPage = () => {
               type="submit"
               className="w-full py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-[#615fff] bg-[#615fff] hover:bg-[#4947db] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7977ff]"
             >
-              Sign in
+              Try Now
             </button>
 
             <div className="flex items-center gap-4">

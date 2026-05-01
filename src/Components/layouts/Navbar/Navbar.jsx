@@ -7,7 +7,17 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
+  console.log(user);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("Signout Successfull !");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <nav
       data-aos="fade-down"
@@ -51,11 +61,19 @@ const Navbar = () => {
         </div>
 
         {user ? (
-          <p>{user.name}</p>
+          <div className="flex justify-center items-center gap-3">
+            <p>{user.email}</p>
+            <button
+              onClick={handleLogout}
+              className="cursor-pointer px-5 text-sm py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"
+            >
+              Log Out
+            </button>
+          </div>
         ) : (
           <Link
             to={"/auth/login"}
-            className="cursor-pointer px-8 py-2 bg-[#615fff] hover:bg-indigo-600 transition text-white rounded-full"
+            className="cursor-pointer px-8 py-2 bg-[#615fff] hover:bg-indigo-600  text-white rounded-full transition-all duration-300"
           >
             Login
           </Link>
@@ -88,7 +106,15 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
         {user ? (
-          <p>{user.name}</p>
+          <div>
+            <p>{user.name}</p>
+            <button
+              onClick={handleLogout}
+              className="cursor-pointer px-8 py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"
+            >
+              Log Out
+            </button>
+          </div>
         ) : (
           <Link
             to={"/auth/login"}

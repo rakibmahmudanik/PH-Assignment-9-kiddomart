@@ -1,8 +1,29 @@
-import React from "react";
+import React, { use } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const RegisterPage = () => {
+  const { createUser, setUser } = use(AuthContext);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const profilePhoto = form.profilePhoto.value;
+    const email = form.email.value;
+    const pass = form.password.value;
+    console.log({ name, profilePhoto, email, pass });
+    createUser(email, pass)
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
   return (
     <main
       data-aos="fade-in"
@@ -22,7 +43,7 @@ const RegisterPage = () => {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={handleRegister} className="space-y-6">
             <div>
               <label
                 htmlFor="name"
@@ -41,15 +62,15 @@ const RegisterPage = () => {
             </div>
             <div>
               <label
-                htmlFor="profile-photo"
+                htmlFor="profilePhoto"
                 className="mb-2 text-slate-900 font-medium text-sm inline-block"
               >
                 Photo URL
               </label>
               <input
                 type="text"
-                id="profile-photo"
-                name="profile-photo"
+                id="profilePhoto"
+                name="profilePhoto"
                 placeholder="Paste your photo url"
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
@@ -120,7 +141,7 @@ const RegisterPage = () => {
               type="submit"
               className="w-full py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-[#615fff] bg-[#615fff] hover:bg-[#4947db] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7977ff]"
             >
-              Sign in
+              Register
             </button>
 
             <div className="flex items-center gap-4">
