@@ -1,14 +1,19 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import "./navbar.css";
 import Search from "../../common/Search/Search";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Spinner from "../../common/Loading/Spinner";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
-  const { user, logOut } = use(AuthContext);
+
+  const { user, logOut, isloading } = useContext(AuthContext);
+  console.log("Navbar isLoading:", isloading);
+
   console.log(user);
+
   const handleLogout = () => {
     logOut()
       .then(() => {
@@ -20,7 +25,6 @@ const Navbar = () => {
   };
   return (
     <nav
-      data-aos="fade-down"
       className="overflow-hidden "
       className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all z-40"
     >
@@ -51,8 +55,8 @@ const Navbar = () => {
             <path
               d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
               stroke="#615fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <button className="absolute -top-2 -right-3 text-xs text-white bg-[#615fff] w-[18px] h-[18px] rounded-full">
@@ -62,7 +66,7 @@ const Navbar = () => {
 
         {user ? (
           <div className="flex justify-center items-center gap-3">
-            <p>{user.email}</p>
+            <p>{user?.email}</p>
             <button
               onClick={handleLogout}
               className="cursor-pointer px-5 text-sm py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"
@@ -107,7 +111,7 @@ const Navbar = () => {
         <NavLink to="/profile">My Profile</NavLink>
         {user ? (
           <div>
-            <p>{user.name}</p>
+            <p>{user?.email}</p>
             <button
               onClick={handleLogout}
               className="cursor-pointer px-8 py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"

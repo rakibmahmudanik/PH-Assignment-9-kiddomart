@@ -1,10 +1,10 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const RegisterPage = () => {
-  const { createUser, setUser } = use(AuthContext);
+  const { createUser, setUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,21 +21,17 @@ const RegisterPage = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        alert(errorCode, errorMessage);
       });
   };
   return (
     <main
-      data-aos="fade-in"
       className={`relative min-h-screen w-full flex items-center justify-center bg-[url("https://i.ibb.co.com/2HRGNRZ/regimage.webp")] bg-cover bg-center bg-blend-overlay py-7`}
     >
       <div className=" absolute inset-0 bg-black/80" />
 
       <div className="py-4 px-4 md:px-8 z-10">
-        <div
-          data-aos="slide-left"
-          className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0"
-        >
+        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0">
           <div className="mb-8">
             <h1 className="text-slate-900 text-3xl font-bold mb-4">Sign Up</h1>
             <p className="text-slate-600 text-base leading-relaxed">

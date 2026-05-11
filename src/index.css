@@ -12,3 +12,11 @@
 [data-aos].aos-animate {
   pointer-events: auto;
 }
+
+[data-aos] {
+  body.aos-all-visible & {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

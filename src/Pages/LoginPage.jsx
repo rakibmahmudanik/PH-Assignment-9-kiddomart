@@ -1,10 +1,16 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import Spinner from "../Components/common/Loading/Spinner";
 
 const LoginPage = () => {
-  const { userSignIn } = use(AuthContext);
+  const { userSignIn, isloading } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  if (isloading) return <Spinner></Spinner>;
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,6 +21,7 @@ const LoginPage = () => {
       .then((res) => {
         const user = res.user;
         console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -22,18 +29,15 @@ const LoginPage = () => {
         alert(errorCode, errorMessage);
       });
   };
+
   return (
     <main
-      data-aos="fade-in"
       className={`relative min-h-screen w-full flex items-center justify-center bg-[url("https://i.ibb.co.com/nqjk80fD/login-Image.webp")] bg-cover bg-center bg-blend-overlay`}
     >
       <div className=" absolute inset-0 bg-black/80" />
 
-      <div className="py-4 px-4 md:px-8 z-10">
-        <div
-          data-aos="slide-right"
-          className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0"
-        >
+      <div className="py-4 px-4 md:px-8 z-100 ">
+        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0">
           <div className="mb-8">
             <h1 className="text-slate-900 text-3xl font-bold mb-4">Sign in</h1>
             <p className="text-slate-600 text-base leading-relaxed">
@@ -53,6 +57,7 @@ const LoginPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="user-email"
                 placeholder="info@example.com"
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
@@ -69,6 +74,7 @@ const LoginPage = () => {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="current-password"
                 placeholder="••••••••"
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"

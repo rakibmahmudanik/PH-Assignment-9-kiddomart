@@ -20,9 +20,15 @@ const Root = () => {
   return (
     <div>
       <ScrollToTop></ScrollToTop>
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+      <header data-aos="fade-down">
+        <Navbar></Navbar>
+      </header>
+      <main>
+        <Outlet></Outlet>
+      </main>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };
