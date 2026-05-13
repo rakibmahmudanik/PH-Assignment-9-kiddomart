@@ -3,10 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Spinner from "../Components/common/Loading/Spinner";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
   const { userSignIn, isloading } = useContext(AuthContext);
   const [err, setErr] = useState("");
+  const [isShow, setIsShow] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ const LoginPage = () => {
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
             </div>
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="mb-2 text-slate-900 font-medium text-sm inline-block"
@@ -73,7 +75,7 @@ const LoginPage = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={`${isShow ? "text" : "password"}`}
                 id="password"
                 name="password"
                 autoComplete="current-password"
@@ -81,6 +83,14 @@ const LoginPage = () => {
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+              <div
+                onClick={() => {
+                  setIsShow(!isShow);
+                }}
+                className=" absolute top-11 right-3 opacity-50 hover:opacity-100 cursor-pointer duration-300"
+              >
+                {isShow ? <FaEye /> : <FaEyeSlash />}
+              </div>
             </div>
 
             {err && <p className="text-red-600 text-xs">{err}</p>}

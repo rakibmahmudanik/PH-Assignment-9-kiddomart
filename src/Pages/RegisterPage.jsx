@@ -1,14 +1,18 @@
-import React, { use, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
-  const { createUser, setUser, updateUser } = useContext(AuthContext);
+  const { createUser, setUser, updateUser, logOut } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [nameErr, setNameErr] = useState("");
   const [photoErr, setPhotoErr] = useState("");
   const [passErr, setPassErr] = useState("");
+  const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -28,12 +32,17 @@ const RegisterPage = () => {
     }
     const email = form.email.value;
     const pass = form.password.value;
-    if (pass.length < 6) {
-      setPassErr("Password must be 6 characters or more.");
+    const isValid =
+      /[A-Z]/.test(pass) && /[a-z]/.test(pass) && pass.length >= 6;
+    if (!isValid) {
+      setPassErr(
+        "Password must be 6 characters or more.\nAtlest One Uppercase, One Lowercase",
+      );
       return;
     } else {
       setPassErr("");
     }
+
     createUser(email, pass)
       .then((res) => {
         const user = res.user;
@@ -45,7 +54,8 @@ const RegisterPage = () => {
             console.log(error);
             setUser(user);
           });
-        console.log(user);
+        toast("Register Successfull");
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -126,7 +136,7 @@ const RegisterPage = () => {
               />
               {err && <p className="text-red-600 text-xs mt-2">{err}</p>}
             </div>
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="mb-2 text-slate-900 font-medium text-sm inline-block"
@@ -134,13 +144,22 @@ const RegisterPage = () => {
                 Password
               </label>
               <input
-                type="password"
+                type={`${isShow ? "text" : "password"}`}
                 id="password"
                 name="password"
                 placeholder="••••••••"
                 required
-                className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
+                className=" px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+              <div
+                onClick={() => {
+                  setIsShow(!isShow);
+                }}
+                className=" absolute top-11 right-3 opacity-50 hover:opacity-100 cursor-pointer duration-300"
+              >
+                {isShow ? <FaEye /> : <FaEyeSlash />}
+              </div>
+
               {passErr && (
                 <p className="text-red-600 text-xs mt-2">{passErr}</p>
               )}

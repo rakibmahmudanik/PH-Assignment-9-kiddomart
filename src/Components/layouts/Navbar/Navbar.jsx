@@ -4,17 +4,19 @@ import "./navbar.css";
 import Search from "../../common/Search/Search";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Spinner from "../../common/Loading/Spinner";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
 
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, isloading } = useContext(AuthContext);
+  if (isloading) return <div className="h-20"></div>;
 
   const handleLogout = () => {
     logOut()
       .then(() => {
-        alert("Signout Successfull !");
+        toast.error("Logout Successfull !");
       })
       .catch((error) => {
         console.log(error);
@@ -86,24 +88,41 @@ const Navbar = () => {
         )}
       </div>
 
-      <button
-        onClick={() => (open ? setOpen(false) : setOpen(true))}
-        aria-label="Menu"
-        className="flex lg:hidden z-20 cursor-pointer"
-      >
-        {/* Menu Icon SVG */}
-        <svg
-          width="21"
-          height="15"
-          viewBox="0 0 21 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="flex justify-center items-center gap-3 lg:hidden">
+        {user && (
+          <div
+            className="tooltip tooltip-left"
+            data-tip={`${user?.displayName}`}
+          >
+            <img className="w-10 h-10 rounded-full" src={`${user?.photoURL}`} />
+          </div>
+        )}
+        <button
+          onClick={() => (open ? setOpen(false) : setOpen(true))}
+          aria-label="Menu"
+          className="flex  z-20 cursor-pointer"
         >
-          <rect width="21" height="1.5" rx=".75" fill="#426287" />
-          <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
-          <rect x="6" y="13" width="15" height="1.5" rx=".75" fill="#426287" />
-        </svg>
-      </button>
+          {/* Menu Icon SVG */}
+          <svg
+            width="21"
+            height="15"
+            viewBox="0 0 21 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="21" height="1.5" rx=".75" fill="#426287" />
+            <rect x="8" y="6" width="13" height="1.5" rx=".75" fill="#426287" />
+            <rect
+              x="6"
+              y="13"
+              width="15"
+              height="1.5"
+              rx=".75"
+              fill="#426287"
+            />
+          </svg>
+        </button>
+      </div>
 
       {/* Mobile Menu */}
       <div
@@ -112,16 +131,16 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
         {user ? (
-          <div>
-            <div
-              className="tooltip  lg:tooltip-right"
+          <div className="flex justify-center items-center gap-3">
+            {/* <div
+              className="tooltip  tooltip-right"
               data-tip={`${user?.displayName}`}
             >
               <img
                 className="w-10 h-10 rounded-full"
                 src={`${user?.photoURL}`}
               />
-            </div>
+            </div> */}
             <button
               onClick={handleLogout}
               className="cursor-pointer px-8 py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"
