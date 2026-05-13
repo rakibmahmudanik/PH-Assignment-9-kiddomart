@@ -1,27 +1,57 @@
-import React, { useContext } from "react";
+import React, { use, useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const RegisterPage = () => {
-  const { createUser, setUser } = useContext(AuthContext);
+  const { createUser, setUser, updateUser } = useContext(AuthContext);
+  const [err, setErr] = useState("");
+  const [nameErr, setNameErr] = useState("");
+  const [photoErr, setPhotoErr] = useState("");
+  const [passErr, setPassErr] = useState("");
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
+    if (name.length < 6) {
+      setNameErr("Name should be more than 6 letters");
+      return;
+    } else {
+      setNameErr("");
+    }
     const profilePhoto = form.profilePhoto.value;
+    if (profilePhoto.slice(0, 8) !== "https://") {
+      setPhotoErr("Invalid URL ! Please try again.");
+      return;
+    } else {
+      setPhotoErr("");
+    }
     const email = form.email.value;
     const pass = form.password.value;
-    console.log({ name, profilePhoto, email, pass });
+    if (pass.length < 6) {
+      setPassErr("Password must be 6 characters or more.");
+      return;
+    } else {
+      setPassErr("");
+    }
     createUser(email, pass)
       .then((res) => {
         const user = res.user;
-        setUser(user);
+        updateUser({ displayName: name, photoURL: profilePhoto })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: profilePhoto });
+          })
+          .catch((error) => {
+            console.log(error);
+            setUser(user);
+          });
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorCode, errorMessage);
+        // alert(errorCode, errorMessage);
+        setErr("Email Already in use !");
       });
   };
   return (
@@ -31,7 +61,7 @@ const RegisterPage = () => {
       <div className=" absolute inset-0 bg-black/80" />
 
       <div className="py-4 px-4 md:px-8 z-10">
-        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0">
+        <div className="animate-fadeInLeft border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0 ">
           <div className="mb-8">
             <h1 className="text-slate-900 text-3xl font-bold mb-4">Sign Up</h1>
             <p className="text-slate-600 text-base leading-relaxed">
@@ -55,6 +85,10 @@ const RegisterPage = () => {
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+
+              {nameErr && (
+                <p className="text-red-600 text-xs mt-2">{nameErr}</p>
+              )}
             </div>
             <div>
               <label
@@ -71,6 +105,9 @@ const RegisterPage = () => {
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+              {photoErr && (
+                <p className="text-red-600 text-xs mt-2">{photoErr}</p>
+              )}
             </div>
             <div>
               <label
@@ -87,6 +124,7 @@ const RegisterPage = () => {
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+              {err && <p className="text-red-600 text-xs mt-2">{err}</p>}
             </div>
             <div>
               <label
@@ -103,6 +141,9 @@ const RegisterPage = () => {
                 required
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
+              {passErr && (
+                <p className="text-red-600 text-xs mt-2">{passErr}</p>
+              )}
             </div>
 
             <div className="flex items-start flex-wrap gap-2">

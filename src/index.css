@@ -20,3 +20,40 @@
     transition: none !important;
   }
 }
+
+@theme {
+  --animate-fadeInDown: fadeInDown 0.8s ease-out both;
+  --animate-fadeInLeft: fadeInLeft 0.8s ease-out both;
+  --animate-fadeInRight: fadeInRight 0.8s ease-out both;
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-70px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(700px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(-700px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

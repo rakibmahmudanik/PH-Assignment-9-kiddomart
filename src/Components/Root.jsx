@@ -20,7 +20,7 @@ const Root = () => {
   return (
     <div>
       <ScrollToTop></ScrollToTop>
-      <header data-aos="fade-down">
+      <header>
         <Navbar></Navbar>
       </header>
       <main>

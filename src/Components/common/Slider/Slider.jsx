@@ -18,7 +18,7 @@ const Slider = ({ toy }) => {
       className={`relative h-full w-full bg-cover bg-center   flex items-center  text-white `}
     >
       <div className="absolute inset-0 bg-black/80" />
-      <div className="mt-30 lg:mt-0 z-10 ">
+      <div className="mt-30 lg:mt-0">
         <div className="max-w-full md:max-w-3xl space-y-5  md:pl-16 text-center  lg:text-left lg:pl-24 xl:pl-32 py-4 transition-all">
           <h1
             data-aos="fade-up"

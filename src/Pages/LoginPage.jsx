@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -6,6 +6,7 @@ import Spinner from "../Components/common/Loading/Spinner";
 
 const LoginPage = () => {
   const { userSignIn, isloading } = useContext(AuthContext);
+  const [err, setErr] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +27,8 @@ const LoginPage = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorCode, errorMessage);
+        // alert(errorCode, errorMessage);
+        setErr("User Name or Passowrd is incorrect !");
       });
   };
 
@@ -36,8 +38,8 @@ const LoginPage = () => {
     >
       <div className=" absolute inset-0 bg-black/80" />
 
-      <div className="py-4 px-4 md:px-8 z-100 ">
-        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0">
+      <div className="py-4 px-4 md:px-8 z-10 ">
+        <div className="border bg-white border-slate-300 rounded-lg p-6 max-w-md mx-auto shadow-sm md:p-8 lg:mx-0 animate-fadeInRight">
           <div className="mb-8">
             <h1 className="text-slate-900 text-3xl font-bold mb-4">Sign in</h1>
             <p className="text-slate-600 text-base leading-relaxed">
@@ -80,6 +82,8 @@ const LoginPage = () => {
                 className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-[#615fff]"
               />
             </div>
+
+            {err && <p className="text-red-600 text-xs">{err}</p>}
 
             <div className="flex items-start flex-wrap gap-2">
               <label className="flex items-center group has-[input:checked]:text-slate-900">
