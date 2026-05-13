@@ -4,7 +4,7 @@ import "./navbar.css";
 import Search from "../../common/Search/Search";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Spinner from "../../common/Loading/Spinner";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -16,7 +16,10 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        toast.error("Logout Successfull !");
+        Swal.fire({
+          title: "Account Logged Out!",
+          icon: "warning",
+        });
       })
       .catch((error) => {
         console.log(error);

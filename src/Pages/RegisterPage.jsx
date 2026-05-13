@@ -3,10 +3,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const RegisterPage = () => {
-  const { createUser, setUser, updateUser, logOut } = useContext(AuthContext);
+  const { createUser, setUser, updateUser } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [nameErr, setNameErr] = useState("");
   const [photoErr, setPhotoErr] = useState("");
@@ -54,13 +54,17 @@ const RegisterPage = () => {
             console.log(error);
             setUser(user);
           });
-        toast("Register Successfull");
+        Swal.fire({
+          title: "Good job!",
+          text: "Account Register Successfull",
+          icon: "success",
+        });
         navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // alert(errorCode, errorMessage);
+        console.log(errorCode, errorMessage);
         setErr("Email Already in use !");
       });
   };
