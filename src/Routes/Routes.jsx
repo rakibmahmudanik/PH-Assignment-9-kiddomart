@@ -9,6 +9,7 @@ import LoginPage from "../Pages/LoginPage";
 import RegisterPage from "../Pages/RegisterPage";
 import AuthLayout from "../Components/layouts/Auth/AuthLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
+import MyCart from "../Pages/MyCart";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ToyDetailsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-cart",
+        element: (
+          <PrivateRoute>
+            <MyCart />
           </PrivateRoute>
         ),
       },

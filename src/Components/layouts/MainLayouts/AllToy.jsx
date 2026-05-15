@@ -3,11 +3,13 @@ import Card from "../../common/card/Card";
 import useToyData from "../../../Hooks/useToyData";
 import Skeleton from "../../common/Loading/Skeleton";
 import { useSearchParams } from "react-router";
+import Search from "../../common/Search/Search";
 
 const AllToy = () => {
   const { toyData, isloading } = useToyData();
   const [searchParams] = useSearchParams();
   const [category, setCategory] = useState([]);
+
   const searchTerm = searchParams.get("search");
   const filteredToy = toyData.filter((toy) =>
     toy.toyName.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -21,6 +23,9 @@ const AllToy = () => {
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
+      <div className="flex md:hidden">
+        <Search></Search>
+      </div>
       <h1
         data-aos="fade-down"
         data-aos-delay="100"

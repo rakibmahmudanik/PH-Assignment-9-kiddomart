@@ -5,12 +5,13 @@ import Search from "../../common/Search/Search";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Spinner from "../../common/Loading/Spinner";
 import Swal from "sweetalert2";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
 
-  const { user, logOut, isloading } = useContext(AuthContext);
+  const { user, logOut, isloading, cartItems } = useContext(AuthContext);
   if (isloading) return <div className="h-20"></div>;
 
   const handleLogout = () => {
@@ -36,32 +37,22 @@ const Navbar = () => {
         </h2>
       </Link>
 
-      {loc.pathname === "/alltoys" ? <Search></Search> : ""}
+      <div className="hidden md:flex">
+        {loc.pathname === "/alltoys" ? <Search></Search> : ""}
+      </div>
 
       {/* Desktop Menu */}
       <div className="hidden sticky lg:flex items-center gap-8">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/profile">My Profile</NavLink>
 
-        <div className="relative cursor-pointer">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 14 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M.583.583h2.333l1.564 7.81a1.17 1.17 0 0 0 1.166.94h5.67a1.17 1.17 0 0 0 1.167-.94l.933-4.893H3.5m2.333 8.75a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0m6.417 0a.583.583 0 1 1-1.167 0 .583.583 0 0 1 1.167 0"
-              stroke="#615fff"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <Link to={"/my-cart"} className="relative cursor-pointer">
+          <HiOutlineShoppingCart className="w-6 h-6 text-[#615fff]" />
+
           <button className="absolute -top-2 -right-3 text-xs text-white bg-[#615fff] w-[18px] h-[18px] rounded-full">
-            0
+            {cartItems.length}
           </button>
-        </div>
+        </Link>
 
         {user ? (
           <div className="flex justify-center items-center gap-3">
@@ -92,6 +83,13 @@ const Navbar = () => {
       </div>
 
       <div className="flex justify-center items-center gap-3 lg:hidden">
+        <Link to={"/my-cart"} className="relative cursor-pointer mr-5">
+          <HiOutlineShoppingCart className="w-7 h-7 text-[#615fff]" />
+
+          <button className="absolute -top-2 -right-3 text-xs text-white bg-[#615fff] w-[18px] h-[18px] rounded-full">
+            {cartItems.length}
+          </button>
+        </Link>
         {user && (
           <div
             className="tooltip tooltip-left"
@@ -135,15 +133,6 @@ const Navbar = () => {
         <NavLink to="/profile">My Profile</NavLink>
         {user ? (
           <div className="flex justify-center items-center gap-3">
-            {/* <div
-              className="tooltip  tooltip-right"
-              data-tip={`${user?.displayName}`}
-            >
-              <img
-                className="w-10 h-10 rounded-full"
-                src={`${user?.photoURL}`}
-              />
-            </div> */}
             <button
               onClick={handleLogout}
               className="cursor-pointer px-8 py-2 bg-[#ff5f5f] hover:bg-[#cd3434]  text-white rounded-full transition-all duration-300"

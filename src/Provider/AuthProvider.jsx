@@ -15,6 +15,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isloading, setLoading] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
 
   const createUser = (email, pass) => {
     return createUserWithEmailAndPassword(auth, email, pass);
@@ -42,6 +43,20 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
+  const addToCart = (toy, quantity) => {
+    setCartItems((prevItems) => {
+      const isExist = prevItems.find((item) => item.toyId === toy.toyId);
+      if (isExist) {
+        return prevItems.map((item) =>
+          item.toyId === toy.toyId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item,
+        );
+      }
+      return [...prevItems, { ...toy, quantity: quantity }];
+    });
+  };
+
   const authData = {
     user,
     setUser,
@@ -50,6 +65,9 @@ const AuthProvider = ({ children }) => {
     userSignIn,
     isloading,
     updateUser,
+    addToCart,
+    cartItems,
+    setCartItems,
   };
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>

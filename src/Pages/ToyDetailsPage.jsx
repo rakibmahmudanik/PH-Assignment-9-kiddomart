@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router";
 import useToyData from "../Hooks/useToyData";
 import {
@@ -12,11 +12,13 @@ import {
   User,
 } from "lucide-react";
 import Spinner from "../Components/common/Loading/Spinner";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const ToyDetailsPage = () => {
   const { toyData, isloading } = useToyData();
   const [quantity, setQuantity] = useState(1);
   const idParams = useParams().id;
+  const { addToCart } = useContext(AuthContext);
 
   if (isloading) return <Spinner></Spinner>;
 
@@ -187,7 +189,12 @@ const ToyDetailsPage = () => {
               </button>
             </div>
 
-            <button className="btn bg-[#615fff] hover:bg-[#413fd2] flex-1 text-white rounded-xl gap-2 text-lg">
+            <button
+              onClick={() => {
+                addToCart(toyDetails, quantity);
+              }}
+              className="btn bg-[#615fff] hover:bg-[#413fd2] flex-1 text-white rounded-xl gap-2 text-lg"
+            >
               <ShoppingCart size={20} /> Add to Cart
             </button>
 
