@@ -2,7 +2,7 @@
 
 A vibrant, fully responsive, and modern toy marketplace web application where users can browse, search, and manage their favorite toys. Built with a minimalist and clean aesthetic, the platform offers a seamless experience for toy enthusiasts and parents alike.
 
-🌐 **[Live URL](https://)** _(Replace with your actual hosted link)_
+🌐 **[Live URL](https://)**
 
 ---
 
@@ -57,10 +57,3 @@ The following dependencies were used to build the features of this application:
 ---
 
 ## 🛠️ Installation & Local Setup Guide
-
-Follow these steps to set up and run this project locally on your machine:
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/rakibmahmudanik/PH-Assignment-9-kiddomart.git](https://github.com/rakibmahmudanik/PH-Assignment-9-kiddomart.git)
-   ```
