@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Spinner from "../Components/common/Loading/Spinner";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const ToyDetailsPage = () => {
   const { toyData, isloading } = useToyData();
@@ -192,6 +193,9 @@ const ToyDetailsPage = () => {
             <button
               onClick={() => {
                 addToCart(toyDetails, quantity);
+                toast.success(`${toyDetails.toyName} added Successfuly`, {
+                  position: "top-center",
+                });
               }}
               className="btn bg-[#615fff] hover:bg-[#413fd2] flex-1 text-white rounded-xl gap-2 text-lg"
             >
