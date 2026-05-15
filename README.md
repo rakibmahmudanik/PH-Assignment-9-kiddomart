@@ -55,5 +55,3 @@ The following dependencies were used to build the features of this application:
 - **react-toastify** – Provides smooth toast notifications for quick user feedback (e.g., "Added to Cart!").
 
 ---
-
-## 🛠️ Installation & Local Setup Guide
