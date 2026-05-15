@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router";
 import { GiShoppingCart } from "react-icons/gi";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const MyCart = () => {
+  useDocumentTitle("My Cart");
   const { cartItems, setCartItems } = useContext(AuthContext);
 
   const totalPrice = cartItems.reduce(

@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -43,6 +44,11 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
   const addToCart = (toy, quantity) => {
     setCartItems((prevItems) => {
       const isExist = prevItems.find((item) => item.toyId === toy.toyId);
@@ -68,6 +74,7 @@ const AuthProvider = ({ children }) => {
     addToCart,
     cartItems,
     setCartItems,
+    resetPassword,
   };
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>

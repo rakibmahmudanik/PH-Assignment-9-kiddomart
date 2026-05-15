@@ -4,11 +4,12 @@ import useToyData from "../../../Hooks/useToyData";
 import Skeleton from "../../common/Loading/Skeleton";
 import { useSearchParams } from "react-router";
 import Search from "../../common/Search/Search";
+import useDocumentTitle from "../../../Hooks/useDocumentTitle";
 
 const AllToy = () => {
+  useDocumentTitle("All Toys");
   const { toyData, isloading } = useToyData();
   const [searchParams] = useSearchParams();
-  const [category, setCategory] = useState([]);
 
   const searchTerm = searchParams.get("search");
   const filteredToy = toyData.filter((toy) =>
@@ -19,11 +20,9 @@ const AllToy = () => {
     toyData.map((toy) => console.log(toy.subCategory));
   }, [toyData]);
 
-  console.log(category);
-
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">
-      <div className="flex md:hidden">
+      <div data-aos="fade-down" data-aos-delay="200" className="flex md:hidden">
         <Search></Search>
       </div>
       <h1

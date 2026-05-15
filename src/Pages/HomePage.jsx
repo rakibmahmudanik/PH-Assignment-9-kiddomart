@@ -6,8 +6,10 @@ import PopularToy from "../Components/layouts/MainLayouts/PopularToy/PopularToy"
 import OurPartnerMarquee from "../Components/layouts/MainLayouts/OurPartnerMarquee";
 import Testimonial from "../Components/layouts/MainLayouts/Testimonial/Testimonial";
 import InfoBar from "../Components/layouts/MainLayouts/InfoBar/InfoBar";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const HomePage = () => {
+  useDocumentTitle("Home");
   return (
     <div className="">
       <Hero></Hero>

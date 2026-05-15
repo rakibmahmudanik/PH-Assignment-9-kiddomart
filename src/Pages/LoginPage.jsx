@@ -4,11 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import Spinner from "../Components/common/Loading/Spinner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const LoginPage = () => {
+  useDocumentTitle("Login");
   const { userSignIn, isloading } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [isShow, setIsShow] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,6 +36,12 @@ const LoginPage = () => {
         setErr("User Name or Passowrd is incorrect !");
       });
   };
+
+  const handleForgotPassword = () => {
+    navigate("forgot-password", { state: { forgotEmail } });
+  };
+
+  console.log(forgotEmail);
 
   return (
     <main
@@ -61,6 +70,7 @@ const LoginPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                onChange={(e) => setForgotEmail(e.target.value)}
                 autoComplete="user-email"
                 placeholder="info@example.com"
                 required
@@ -123,12 +133,13 @@ const LoginPage = () => {
                 <span className="ml-3 text-sm text-slate-700">Remember me</span>
               </label>
 
-              <a
-                href="#"
+              <button
+                type="button"
+                onClick={handleForgotPassword}
                 className="ml-auto text-sm font-medium text-[#615fff] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#615fff] rounded"
               >
                 Forgot password?
-              </a>
+              </button>
             </div>
 
             <button

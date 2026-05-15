@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCQTVMVJtDGDMRB6iwG2hBUlWnoHMVp47g",
-  authDomain: "kiddomart-e125d.firebaseapp.com",
-  projectId: "kiddomart-e125d",
-  storageBucket: "kiddomart-e125d.firebasestorage.app",
-  messagingSenderId: "447510519570",
-  appId: "1:447510519570:web:bcd12b9ca54330496cddcb",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

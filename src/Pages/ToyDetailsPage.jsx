@@ -14,8 +14,12 @@ import {
 import Spinner from "../Components/common/Loading/Spinner";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import TryNowForm from "../Components/common/TryNow/TryNowForm";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const ToyDetailsPage = () => {
+  useDocumentTitle(`Details`);
+
   const { toyData, isloading } = useToyData();
   const [quantity, setQuantity] = useState(1);
   const idParams = useParams().id;
@@ -26,6 +30,7 @@ const ToyDetailsPage = () => {
   const toyDetails = toyData.filter(
     (toy) => toy.toyId.toString() === idParams,
   )[0];
+
   console.log(toyDetails);
 
   return (
@@ -241,6 +246,8 @@ const ToyDetailsPage = () => {
           {toyDetails.description}
         </p>
       </div>
+
+      <TryNowForm></TryNowForm>
     </div>
   );
 };

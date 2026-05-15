@@ -10,6 +10,7 @@ import RegisterPage from "../Pages/RegisterPage";
 import AuthLayout from "../Components/layouts/Auth/AuthLayout";
 import PrivateRoute from "../Provider/PrivateRoute";
 import MyCart from "../Pages/MyCart";
+import ForgotPassword from "../Pages/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <RegisterPage />,
+      },
+      {
+        path: "login/forgot-password",
+        element: <ForgotPassword />,
       },
     ],
   },

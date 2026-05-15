@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const RegisterPage = () => {
+  useDocumentTitle("Sign Up");
   const { createUser, setUser, updateUser } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [nameErr, setNameErr] = useState("");
@@ -58,6 +60,7 @@ const RegisterPage = () => {
           title: "Good job!",
           text: "Account Register Successfull",
           icon: "success",
+          confirmButtonColor: "#615fff",
         });
         navigate("/");
       })

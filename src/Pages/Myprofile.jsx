@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const Myprofile = () => {
+  useDocumentTitle("My Profile");
   const { user, setUser, updateUser } = useContext(AuthContext);
 
   const [name, setName] = useState(user?.displayName || "");
