@@ -2,7 +2,7 @@
 
 A vibrant, fully responsive, and modern toy marketplace web application where users can browse, search, and manage their favorite toys. Built with a minimalist and clean aesthetic, the platform offers a seamless experience for toy enthusiasts and parents alike.
 
-🌐 **[Live URL](https://)**
+🌐 **[Live URL](https://kiddomart-e125d.web.app/)**
 
 ---
 
