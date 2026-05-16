@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router";
 import { GiShoppingCart } from "react-icons/gi";
 import useDocumentTitle from "../Hooks/useDocumentTitle";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
   useDocumentTitle("My Cart");
@@ -15,6 +16,15 @@ const MyCart = () => {
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.toyId !== id));
+  };
+
+  const handleCheckout = () => {
+    Swal.fire({
+      title: "Thank you!",
+      text: "You have Placed The order.",
+      icon: "success",
+      confirmButtonColor: "#615fff",
+    });
   };
 
   return (
@@ -87,7 +97,10 @@ const MyCart = () => {
                   ${totalPrice?.toFixed(2)}
                 </span>
               </h3>
-              <button className="btn bg-[#615fff] text-white hover:bg-indigo-700 w-full md:w-auto px-10 rounded-full border-none">
+              <button
+                onClick={handleCheckout}
+                className="btn bg-[#615fff] text-white hover:bg-indigo-700 w-full md:w-auto px-10 rounded-full border-none"
+              >
                 Proceed to Checkout
               </button>
             </div>

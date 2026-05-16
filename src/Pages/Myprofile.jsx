@@ -24,8 +24,12 @@ const Myprofile = () => {
         });
       })
       .catch((error) => {
-        console.error(error);
-        alert("Failed to update profile.");
+        Swal.fire({
+          title: "Failed!",
+          text: error.message || "Something went wrong.",
+          icon: "error",
+          confirmButtonColor: "#ff5f5f",
+        });
       });
   };
 

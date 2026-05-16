@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "../../common/card/Card";
 import useToyData from "../../../Hooks/useToyData";
 import Skeleton from "../../common/Loading/Skeleton";
@@ -15,10 +15,6 @@ const AllToy = () => {
   const filteredToy = toyData.filter((toy) =>
     toy.toyName.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-
-  useEffect(() => {
-    toyData.map((toy) => console.log(toy.subCategory));
-  }, [toyData]);
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-4">

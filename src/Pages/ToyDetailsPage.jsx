@@ -4,13 +4,14 @@ import useToyData from "../Hooks/useToyData";
 import {
   Star,
   ShoppingCart,
-  Heart,
   ShieldCheck,
   Truck,
   RotateCcw,
   Mail,
   User,
 } from "lucide-react";
+import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
+
 import Spinner from "../Components/common/Loading/Spinner";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
@@ -24,14 +25,13 @@ const ToyDetailsPage = () => {
   const [quantity, setQuantity] = useState(1);
   const idParams = useParams().id;
   const { addToCart } = useContext(AuthContext);
+  const [favourite, setFavourite] = useState(false);
 
   if (isloading) return <Spinner></Spinner>;
 
   const toyDetails = toyData.filter(
     (toy) => toy.toyId.toString() === idParams,
   )[0];
-
-  console.log(toyDetails);
 
   return (
     <div
@@ -207,8 +207,15 @@ const ToyDetailsPage = () => {
               <ShoppingCart size={20} /> Add to Cart
             </button>
 
-            <button className="btn btn-outline btn-square rounded-xl">
-              <Heart />
+            <button
+              onClick={() => setFavourite(!favourite)}
+              className="btn btn-outline/95 btn-square rounded-xl"
+            >
+              {favourite ? (
+                <IoHeartSharp size={"25px"} color="rgb(255, 73, 73)" />
+              ) : (
+                <IoHeartOutline size={"25px"} />
+              )}
             </button>
           </div>
 

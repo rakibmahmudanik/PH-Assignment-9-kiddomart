@@ -8,7 +8,7 @@ import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const LoginPage = () => {
   useDocumentTitle("Login");
-  const { userSignIn, isloading } = useContext(AuthContext);
+  const { userSignIn, isloading, googleSignin } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [isShow, setIsShow] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
@@ -24,9 +24,24 @@ const LoginPage = () => {
     const pass = form.password.value;
 
     userSignIn(email, pass)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
+      .then(() => {
+        // const user = res.user;
+        // console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setErr("User Name or Passowrd is incorrect !");
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    googleSignin()
+      .then(() => {
+        // const user = res.user;
+        // console.log(user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -40,8 +55,6 @@ const LoginPage = () => {
   const handleForgotPassword = () => {
     navigate("forgot-password", { state: { forgotEmail } });
   };
-
-  console.log(forgotEmail);
 
   return (
     <main
@@ -156,13 +169,13 @@ const LoginPage = () => {
             </div>
 
             <div>
-              <a
-                href="#"
-                className="w-full flex items-center justify-center gap-2.5 py-2 px-3.5 text-sm rounded-md font-semibold text-slate-900 border border-slate-300 bg-white hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7673ff]"
+              <button
+                onClick={handleGoogleSignin}
+                className="w-full flex items-center justify-center gap-2.5 py-2 px-3.5 text-sm rounded-md font-semibold text-slate-900 border border-slate-300 bg-white hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7673ff] cursor-pointer"
               >
                 <FcGoogle size={20} />
                 Sign in with Google
-              </a>
+              </button>
             </div>
 
             <div className="text-slate-900 text-sm text-center">

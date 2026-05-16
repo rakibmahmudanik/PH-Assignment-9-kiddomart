@@ -8,12 +8,13 @@ import useDocumentTitle from "../Hooks/useDocumentTitle";
 
 const RegisterPage = () => {
   useDocumentTitle("Sign Up");
-  const { createUser, setUser, updateUser } = useContext(AuthContext);
+  const { createUser, setUser, updateUser, googleSignin } =
+    useContext(AuthContext);
   const [err, setErr] = useState("");
   const [nameErr, setNameErr] = useState("");
   const [photoErr, setPhotoErr] = useState("");
   const [passErr, setPassErr] = useState("");
-  const [isShow, setIsShow] = useState(false);
+  const [isPassShow, setIsPassShow] = useState(false);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
@@ -69,6 +70,20 @@ const RegisterPage = () => {
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
         setErr("Email Already in use !");
+      });
+  };
+  const handleGoogleSignin = () => {
+    googleSignin()
+      .then(() => {
+        // const user = res.user;
+        // console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setErr("User Name or Passowrd is incorrect !");
       });
   };
   return (
@@ -151,7 +166,7 @@ const RegisterPage = () => {
                 Password
               </label>
               <input
-                type={`${isShow ? "text" : "password"}`}
+                type={`${isPassShow ? "text" : "password"}`}
                 id="password"
                 name="password"
                 placeholder="••••••••"
@@ -160,11 +175,11 @@ const RegisterPage = () => {
               />
               <div
                 onClick={() => {
-                  setIsShow(!isShow);
+                  setIsPassShow(!isPassShow);
                 }}
                 className=" absolute top-11 right-3 opacity-50 hover:opacity-100 cursor-pointer duration-300"
               >
-                {isShow ? <FaEye /> : <FaEyeSlash />}
+                {isPassShow ? <FaEye /> : <FaEyeSlash />}
               </div>
 
               {passErr && (
@@ -173,7 +188,7 @@ const RegisterPage = () => {
             </div>
 
             <div className="flex items-start flex-wrap gap-2">
-              <label className="flex items-center group has-[input:checked]:text-slate-900">
+              <label className="flex items-center group has-[input:checked]:text-slate-900 cursor-pointer">
                 <input
                   id="remember"
                   name="remember"
@@ -214,13 +229,13 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <a
-                href="#"
-                className="w-full flex items-center justify-center gap-2.5 py-2 px-3.5 text-sm rounded-md font-semibold text-slate-900 border border-slate-300 bg-white hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7673ff]"
+              <button
+                onClick={handleGoogleSignin}
+                className="w-full flex items-center justify-center gap-2.5 py-2 px-3.5 text-sm rounded-md font-semibold text-slate-900 border border-slate-300 bg-white hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7673ff] cursor-pointer"
               >
                 <FcGoogle size={20} />
                 Sign in with Google
-              </a>
+              </button>
             </div>
 
             <div className="text-slate-900 text-sm text-center">

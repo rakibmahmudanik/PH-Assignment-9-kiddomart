@@ -13,7 +13,7 @@ const Hero = () => {
   const { toyData, isloading } = useToyData();
   const randomRange = toyData.slice(firstIndex, lastIndex);
   const SlideToy = randomRange.slice(0, 3);
-  console.log(SlideToy);
+
   return (
     <section>
       <Swiper
